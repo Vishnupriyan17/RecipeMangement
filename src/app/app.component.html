@@ -1,0 +1,116 @@
+<div> 
+
+  <!-- Heading -->
+  <h1 class="border border-secondary ">Recipe Managment System</h1>
+
+
+  <div> <!--input-->
+
+    <!-- Input -->
+    <div class="border border-secondary data d-flex justify-content-center">
+      <form #myForm="ngForm">
+
+        <div class="form-floating m-3"><b id="tag">Recipe Id:</b>
+          <label for="input" ></label>
+          <input type="text" class="form-control border-secondary input"
+          name="rid"
+          #rid="ngModel"
+          ngModel
+          required
+          pattern="[a-zA-z0-9]+">
+          <div *ngIf="rid.touched">
+            <div *ngIf="rid.errors?.['required']">
+              <font color="Blue"> <b id="tag">Recipe Id is required</b></font>
+            </div>
+            <div *ngIf="rid.errors?.['pattern']">
+              <font color="Blue"> <b id="tag">Invalid Recipe Id</b></font>
+            </div>
+          </div>
+         
+          
+  
+  
+        </div>
+
+
+        <div class="form-floating m-3"><b id="tag">Recipe Name:</b>
+          <label for="input" ></label>
+          <input type="text" class="form-control border-secondary input"
+          name="rname"
+          #rname="ngModel"
+          ngModel
+          required
+          pattern="[a-zA-z]+">
+          <div *ngIf="rname.touched">
+            <div *ngIf="rname.errors?.['required']">
+              <font color="Blue"> <b id="tag">Recipe Name is required</b></font>
+            </div>
+            <div *ngIf="rname.errors?.['pattern']">
+              <font color="Blue"> <b id="tag">Invalid Recipe name</b></font>
+            </div>
+          </div>
+         
+          
+  
+  
+        </div>
+        <div class="form-floating m-3"><b id="tag">Recipe Origin:</b>
+          <label for="input"></label>
+          <input type="text" class="form-control border-secondary input" name="rorigin"
+          #rorigin="ngModel"
+          ngModel
+          required
+          pattern="[a-zA-Z]+">
+          <div *ngIf="rorigin.touched">
+             <div *ngIf="rorigin.errors?.['required']">
+              <font color="blue"><b id="tag">Recipe Origin is required</b></font>
+             </div>
+             <div *ngIf="rorigin.errors?.['pattern']">
+              <font color="blue"><b id="tag">Invalid Origin name</b></font>
+             </div>
+          </div>
+         
+          
+  
+  
+  
+        </div>
+        <div class="form-floating m-3"><b id="tag">Recipe Vedio Url:</b>
+          <label for="input"></label>
+          <input type="url" class="form-control border-secondary input"  name="rurl" #rurl="ngModel" ngModel
+         >
+          <!-- <div *ngIf="rurl.touched">
+            <div *ngIf="rurl.errors?.['required']">
+              <font color="blue"><b id="tag">Recipe URL is required</b></font>
+            </div>
+            <div *ngIf="rurl.errors?.['pattern']">
+              <font color="blue"> <b id="tag">Invalid URL</b></font>
+            </div> -->
+          <!-- </div>
+           -->
+  
+  
+        </div>
+          <button class=" btn btn-primary form-floating form-control  mt-5 but" (click)="oncreate(myForm.value)" style="display: inline;">Create</button>
+          <button class=" btn btn-success form-floating form-control  mt-5 but" (click)="onupdate(myForm.value)" style="display: inline;" >Update</button>
+          <button class=" btn btn-warning form-floating form-control  mt-5 but" (click)="ondelete(myForm.value)" style="display: inline;">Delete</button>
+          <button class="btn btn-danger form-floating form-control  mt-5 but"  (click)="findRecipe(myForm.value)">Find</button>
+            <button class="btn btn-info form-floating form-control mt-5 but" (click)="findAllRecipe()">Find All</button>
+        </form>
+    </div>
+
+
+   
+  </div>
+   <!-- Display -->
+   <br><br>
+   <h3>{{result}}</h3>
+   <div style="width: 100%;" *ngIf="flag"  class="table table-borderd d-flex justify-content-center">
+     <table width="80%" align="center" >
+      <tr><th>Recipe Id</th><th>Recipe Name</th><th>Recipe Origin</th> <th>Recipe Url</th></tr> 
+       <tr *ngFor="let res of recipeArr">
+           <td> {{res.id}} </td> <td>{{res.name}}</td><td> {{res.origin}} </td><td><a href="{{res.url}}">{{res.url}} </a> </td>
+       </tr>
+    </table>
+    </div>
+</div>
